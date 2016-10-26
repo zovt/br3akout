@@ -1,0 +1,32 @@
+{
+  "name": "br3akout",
+  "version": "0.0.1",
+  "description": "Breakout in ThreeJS",
+  "main": "build/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zovt/br3akout.git"
+  },
+  "keywords": [
+    "game",
+    "breakout",
+    "br3akout",
+    "threejs",
+    "three"
+  ],
+  "author": "zovt",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/zovt/br3akout/issues"
+  },
+  "homepage": "https://github.com/zovt/br3akout#readme",
+  "dependencies": {
+    "three": "^0.82.0"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.3"
+  }
+}
