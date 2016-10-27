@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
 	entry: './src/main.js',
 	output: {
@@ -8,8 +6,12 @@ module.exports = {
 	},
 	module: {
 		loaders: [{
-			test: path.join(__dirname, 'src'),
+			test: /\.js$/,
+			exclude: /(node_modules|bower_components)/,
 			loader: 'babel-loader',
+			query: {
+				presets: ['es2015'],
+			},
 		}],
 	},
 };
