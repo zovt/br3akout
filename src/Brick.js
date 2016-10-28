@@ -1,7 +1,7 @@
 import * as three from 'three';
 import Hitbox from './Hitbox.js';
 
-export default class Brick {
+export default class Brick extends three.Object3D {
 	constructor(x, y, width, height, color) {
 		this.position = { x, y };
 		this.dimensions = { width, height };

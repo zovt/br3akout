@@ -1,5 +1,6 @@
 module.exports = {
 	entry: './src/main.js',
+	devtool: 'source-map',
 	output: {
 		path: __dirname,
 		filename: 'br3akout.js',
