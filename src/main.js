@@ -1,4 +1,5 @@
 import GraphicsSystem from './GraphicsSystem.js';
+import EventSystem from './EventSystem.js';
 import World from './World.js';
 
 function main() {
@@ -6,7 +7,10 @@ function main() {
 	const graphics = new GraphicsSystem(el);
 	graphics.mount();
 
-	const world = new World(0, 0, el.clientWidth, el.clientHeight);
+	const events = new EventSystem(el);
+
+	const world = new World(0, 0, el.clientWidth, el.clientHeight, events);
+
 	graphics.addToScene(world);
 
 	function loop() {
@@ -14,6 +18,8 @@ function main() {
 		graphics.render();
 		world.update();
 	}
+
+	loop();
 }
 
 main()
