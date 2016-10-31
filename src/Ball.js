@@ -15,10 +15,19 @@ export default class Ball extends GameObject {
 
 	initDisplacemetVector() {
 		this.displacementVector = new three.Vector3(0, -1, 0);
-		this.displacementVector.multiplyScalar(3);
+		this.displacementVector.multiplyScalar(4);
 	}
 
 	update() {
 		this.position.add(this.displacementVector);
+	}
+
+	setDisplacementVector(x, y) {
+		this.displacementVector.set(x, y, 0);
+	}
+
+	onCollision(obj) {
+		super.onCollision();
+		console.log('Boink!');
 	}
 }

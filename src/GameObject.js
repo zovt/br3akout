@@ -12,4 +12,19 @@ export default class GameObject extends three.Object3D {
 		this.hitbox = new Hitbox(this);
 		this.add(this.hitbox.boundingBox);
 	}
+
+	update() {
+		return this;
+	}
+
+	checkCollision(obj) {
+		if (this.hitbox.checkCollision(obj.hitbox)) {
+			this.onCollision(obj);
+			obj.onCollision(this);
+		}
+	}
+
+	onCollision(obj) {
+		return this;
+	}
 }

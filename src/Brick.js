@@ -1,24 +1,25 @@
 import * as three from 'three';
-import Hitbox from './Hitbox.js';
 
-export default class Brick extends three.Object3D {
-	constructor(x, y, width, height, color) {
-		this.position = { x, y };
-		this.dimensions = { width, height };
-		this.color = color;
-		this.createMesh();
-		this.createHitbox();
+import GameObject from './GameObject.js';
+import Ball from './Ball.js';
+
+export default class Brick extends GameObject {
+	constructor(x, y, width, height, color, callback) {
+		const geometry = new three.PlaneGeometry(width, height);
+		const material = new three.MeshBasicMaterial({ color });
+		super(new three.Mesh(geometry, material));
+
+		this.position.set(x, y, 0);
+		this.width = width;
+		this.height = height;
+		this.collisionCallback = callback;
 	}
 
-	createMesh() {
-		const geometry = 
-			new three.PlaneGeometry(this.dimensions.width, this.dimensions.height, 1, 1);
-		const material = new three.MeshBasicMaterial({ color: this.color });
-		this.mesh = new three.Mesh(geometry, material);
-	}
-
-	createHitbox() {
-		this.hitbox = new Hitbox(this.position.x, this.position.y,
-				this.dimensions.width, this.dimensions.height);
+	onCollision(obj) {
+		if (obj instanceof Ball) {
+			obj.displacementVector.setY(-obj.displacementVector.y);
+			this.collisionCallback(this);
+		}
 	}
 }
+
