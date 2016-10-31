@@ -27,7 +27,8 @@ export default class GraphicsSystem {
 					this.container.clientWidth / 2, this.container.clientHeight / 2,
 					this.container.clientHeight / -2, 1, 1000);
 
-		this.camera.position.set(0, 0, 500);
+		this.camera.position.set(this.container.clientWidth / 2, 
+				this.container.clientHeight / 2, 1000);
 	}
 
 	mount() {

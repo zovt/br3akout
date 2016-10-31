@@ -1,6 +1,6 @@
 import * as three from 'three';
 
-export default class Hitbox extends three.Box2 {
+export default class Hitbox extends three.Box3 {
 	constructor(obj) {
 		super();
 

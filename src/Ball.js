@@ -1,7 +1,6 @@
 import * as three from 'three';
 
 import GameObject from './GameObject.js';
-import Hitbox from './Hitbox.js';
 
 export default class Ball extends GameObject {
 	constructor(x, y, radius, color) {
@@ -9,6 +8,8 @@ export default class Ball extends GameObject {
 		const material = new three.MeshBasicMaterial({ color });
 		super(new three.Mesh(geometry, material));
 
-		this.mesh.position.set(x, y, 0);
+		this.position.set(x, y, 0);
+
+		this.initDisplacemetVector();
 	}
 }

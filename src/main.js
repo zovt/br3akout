@@ -1,13 +1,19 @@
-import Paddle from './Paddle.js';
 import GraphicsSystem from './GraphicsSystem.js';
-import Ball from './Ball.js';
+import World from './World.js';
 
 function main() {
-	const graphics = new GraphicsSystem(document.getElementById('main'));
+	const el = document.getElementById('main');
+	const graphics = new GraphicsSystem(el);
 	graphics.mount();
-	const ball = new Ball(0, 0, 100, 0xFF00FF);
-	graphics.addToScene(ball);
-	graphics.render();
+
+	const world = new World(0, 0, el.clientWidth, el.clientHeight);
+	graphics.addToScene(world);
+
+	function loop() {
+		requestAnimationFrame(loop);
+		graphics.render();
+		world.update();
+	}
 }
 
 main()

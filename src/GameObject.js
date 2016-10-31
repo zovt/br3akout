@@ -1,5 +1,6 @@
 import * as three from 'three';
 import Hitbox from './Hitbox.js';
+import transformationMatrix from './TransformationMatrix.js';
 
 export default class GameObject extends three.Object3D {
 	constructor(mesh) {
