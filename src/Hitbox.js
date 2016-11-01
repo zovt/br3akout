@@ -8,16 +8,35 @@ export default class Hitbox extends three.Box3 {
 		this.setFromObject(this.parent);
 
 		this.boundingBox = new three.BoxHelper(this);
+		this.isIntersecting = false;
+		this.intersectTimeout = 0;
 	}
 
 	update() {
+
+		this.intersectTimeout = Math.max(0, this.intersectTimeout - 1);
+		if (this.intersectTimeout === 0) {
+			this.isIntersecting = false;
+		}
+	}
+
+	updatePos() {
 		this.setFromObject(this.parent);
 	}
 
-	checkCollision(other) {
-		this.update();
-		other.update();
+	setColliding() {
+		this.isIntersecting = true;
+		this.intersectTimeout = 3;
+	}
 
-		return this.intersectsBox(other);
+	checkCollision(other) {
+		this.updatePos();
+		other.updatePos();
+
+		if (!this.isIntersecting) {
+			return this.intersectsBox(other) && !other.isIntersecting;
+		}
+
+		return false;
 	}
 }

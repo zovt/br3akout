@@ -22,6 +22,7 @@ export default class Paddle extends GameObject {
 	}
 
 	update() {
+		super.update();
 		this.displacementVector = new three.Vector3();
 		this.displacementVector.copy(this.mousePosition);
 		this.displacementVector.setY(this.position.y);
@@ -42,6 +43,7 @@ export default class Paddle extends GameObject {
 			obj.displacementVector.setX(obj.displacementVector.x 
 					+ this.velocity * 5);
 			obj.displacementVector.setX(obj.displacementVector.x / 8);
+			obj.setBounced();
 		}
 	}
 }

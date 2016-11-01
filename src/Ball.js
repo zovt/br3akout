@@ -8,7 +8,9 @@ export default class Ball extends GameObject {
 		const material = new three.MeshBasicMaterial({ color });
 		super(new three.Mesh(geometry, material));
 
+		this.lastPosition = new three.Vector3();
 		this.position.set(x, y, 0);
+		this.lastPosition.copy(this.position);
 
 		this.initDisplacemetVector();
 	}
@@ -19,6 +21,8 @@ export default class Ball extends GameObject {
 	}
 
 	update() {
+		super.update();
+		this.lastPosition.copy(this.position);
 		this.position.add(this.displacementVector);
 	}
 
@@ -26,8 +30,13 @@ export default class Ball extends GameObject {
 		this.displacementVector.set(x, y, 0);
 	}
 
+	setBounced() {
+		this.bounced = true;
+		this.bounceTimeout = 3;
+	}
+
 	onCollision(obj) {
-		super.onCollision();
+		super.onCollision(obj);
 		console.log('Boink!');
 	}
 }

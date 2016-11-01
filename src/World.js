@@ -86,8 +86,7 @@ export default class World extends three.Object3D {
 	}
 
 	update() {
-		this.ball.update();
-		this.paddle.update();
 		this.checkCollisions();
+		this.children.forEach(c => c.update());
 	}
 }

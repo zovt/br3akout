@@ -17,7 +17,12 @@ export default class Brick extends GameObject {
 
 	onCollision(obj) {
 		if (obj instanceof Ball) {
-			obj.displacementVector.setY(-obj.displacementVector.y);
+			if (obj.lastPosition.x < this.position.x - this.width / 2 + 3
+					|| obj.lastPosition.x > this.position.x + this.width / 2 - 3) {
+				obj.displacementVector.setX(-obj.displacementVector.x);
+			} else {
+				obj.displacementVector.setY(-obj.displacementVector.y);
+			}
 			this.collisionCallback(this);
 		}
 	}
