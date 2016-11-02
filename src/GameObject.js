@@ -14,17 +14,11 @@ export default class GameObject extends three.Object3D {
 	}
 
 	update() {
-		this.hitbox.update();
 		return this;
 	}
 
 	checkCollision(obj) {
-		if (this.hitbox.checkCollision(obj.hitbox)) {
-			this.hitbox.setColliding();
-			obj.hitbox.setColliding();
-			this.onCollision(obj);
-			obj.onCollision(this);
-		}
+		this.hitbox.checkCollision(obj.hitbox);
 	}
 
 	onCollision(obj) {

@@ -54,7 +54,6 @@ export default class World extends three.Object3D {
 					+ Math.random() * Math.pow(255, 2) + Math.random() * 255,
 					this.removeBrick.bind(this));
 
-			console.log(brick);
 			this.bricks.add(brick);
 			this.add(brick);
 
@@ -85,8 +84,13 @@ export default class World extends three.Object3D {
 		this.bricks.forEach(brick => this.ball.checkCollision(brick));
 	}
 
+	doCollisions() {
+		this.children.forEach(c => c.hitbox.doCollisions());
+	}
+
 	update() {
 		this.checkCollisions();
+		this.doCollisions();
 		this.children.forEach(c => c.update());
 	}
 }
